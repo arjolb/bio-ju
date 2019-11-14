@@ -465,6 +465,9 @@
                         color: $topnav;
                         text-transform: capitalize;
                         line-height: 1.6;
+                        &:last-child{
+                            display: none;
+                        }
                         @include atLarge{
                             font-size: 1rem;
                             text-transform: uppercase;

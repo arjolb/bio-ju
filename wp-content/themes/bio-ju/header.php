@@ -73,10 +73,44 @@
                                    <div class="col col-md-8">
                                         <div class="row">
                                             <?php
-                                                
+                                               $args = array(
+                                                   'number'     => $number,
+                                                   'orderby'    => 'title',
+                                                   'order'      => 'ASC',
+                                                   'hide_empty' => $hide_empty,
+                                                   'include'    => $ids
+                                               );
+                                               $product_categories = get_terms( 'product_cat', $args );
+                                               $count = count($product_categories);
+                                               
+                                               
                                             ?>
                                             <div class="col col-md-6">
-                                                <h1><a href=""></a></h1>
+                                                <?php
+
+                                            if ( $count > 0 ){
+                                                foreach ( $product_categories as $product_category ) {
+                                                    echo '<h1><a href="' . get_term_link( $product_category ) . '">' . $product_category->name . '</a></h4>';
+                                                    $args = array(
+                                                        'posts_per_page' => -1,
+                                                        'tax_query' => array(
+                                                            'relation' => 'AND',
+                                                            array(
+                                                                'taxonomy' => 'product_cat',
+                                                                'field' => 'slug',
+                                                                // 'terms' => 'white-wines'
+                                                                'terms' => $product_category->slug
+                                                            )
+
+                                            ),
+
+                                                    );
+
+                                                }
+                                            }
+
+                                               ?>
+                                                <!-- <h1><a href=""></a></h1> -->
                                             </div>
                                             <?php ?>
                                         </div>

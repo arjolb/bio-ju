@@ -80,4 +80,37 @@
             border-radius: 50%;
         }
     }
+
+    &-front-page{
+        background: $topnavRecetaBackground;
+        padding: 60px 0;
+
+        &--description--title{
+            color: $discountReceta;
+            text-transform: uppercase;
+            font-size: 16px;
+            padding-bottom: 15px;
+        }
+
+        &--description--content{
+            color: #646464;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.6;
+            padding-bottom: 13px;
+        }
+
+        &--description--btn{
+            outline: none;
+            border: none;
+            background:  $button;
+            font-weight: bold;
+            color:
+            #fff;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            padding: 10px 26px;
+            cursor: pointer;
+        }
+    }
 }

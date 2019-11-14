@@ -204,16 +204,16 @@
 </div><!-- /wrapper -->
 
 
-<div class="recetat">
+<div class="recetat recetat-front-page">
     <div class="wrapper">
         <div class="row">
             <div class="col col-md-4">
                 <section class="recetat__description">
-                    <h1 class="recetat__description--title">recetat</h1>
-                    <p class="recetat__description--content">
+                    <h1 class="recetat-front-page--description--title">recetat</h1>
+                    <p class="recetat-front-page--description--content">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
                     </p>
-                    <button class="recetat__description--btn">
+                    <button class="recetat-front-page--description--btn">
                         Zbulo më shumë
                     </button>
                 </section>
@@ -265,30 +265,11 @@
             </div>
         </div>
     </div><!-- /wrapper -->
-</div><!-- /recetat --><?php
-$args = array(
-    'posts_per_page' => -1,
-    'tax_query' => array(
-        'relation' => 'AND',
-        array(
-            'taxonomy' => 'product_cat',
-            'field' => 'slug',
-            'terms' => 'Bulmet-dhe-Djathra' //Your category goes here
-        ),
-    ),
-    'post_type' => 'product',
-    'orderby' => 'title',
-);
-$first_cat_query = new WP_Query( $args );
+</div><!-- /recetat -->
 
-// <!-- Then just do a loop to print each product: -->
 
-while ( $first_cat_query->have_posts() ) {
-    $first_cat_query->the_post();
-    echo '' . get_the_title() . '<br /><br />';
-}
-wp_reset_postdata();
 
-?>
+
+
 <?php get_footer(); ?>
 
