@@ -1,0 +1,258 @@
+.produkte-oferte{
+
+    padding-top: 4rem;
+
+    @include atLarge{
+        padding-top: 7.5rem;//120px
+    }
+    @include atXLarge{
+        padding-top: 10rem;//160px
+    }
+
+
+
+    //Produktet e zgjedhura pt
+    &__zgjedhur{
+        @include atLarge{
+            padding: 8.75rem 0;//140px
+        }
+    }
+
+
+
+    //Header text
+    &__header{
+        color: $infoText;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.5rem;//24px
+        @include atXLarge{
+            font-size: 1.875rem;//30px
+        }
+    }
+
+
+    //Produktet
+    &__produkte{
+        padding-top: 2rem;
+
+        @include atMedium{
+            padding-top: 4.25rem;//68px;
+        }
+        
+        //Container
+        .flexbox &--container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            
+            @include atLarge{
+                border-right: 3px dotted #707070;
+            }
+
+            >div{
+                flex-basis: 100%;
+                margin-bottom: 60px;
+                
+                @include atMedium{
+                    flex-basis: 46%;
+                }
+
+                @include atLarge{
+                    margin-bottom: 0;
+                    flex-basis: 25%;
+                    background: none;
+                    border-left: 3px dotted #707070;
+                }
+
+            }
+        }
+
+        .no-flexbox &--container{
+            margin-right: -40px;
+            @include clearfix;
+            
+            >div{
+                float: left;
+                padding-right: 40px;
+                width: 25%;
+
+                &:last-child{
+                    .produkte-oferte__produkte--border{
+                        border-right: 3px dotted #707070;
+                    }
+                }
+            }
+
+        }
+
+
+
+
+    //Produktet e zgjedhura
+
+        &__zgjedhur{
+            .flexbox &--container{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                
+                @include atLarge{
+                    border-right: 3px dotted #707070;
+                }
+
+                &:first-child{
+                    margin-bottom: 100px;
+                }
+
+                >div{
+                    margin-bottom: 100px;
+                    // background: #eee;
+                    flex-basis: 100%;
+
+                    @include atMedium{
+                        flex-basis: 46%;
+                    }
+
+                    @include atLarge{
+                        flex-basis: 25%;
+                        margin-bottom: 0;
+                        border-left: 3px dotted #707070;
+                    }
+
+                }
+                
+            }
+    
+            .no-flexbox &--container{
+                margin-right: -40px;
+                @include clearfix;
+                
+                >div{
+                    float: left;
+                    padding-right: 40px;
+                    width: 25%;
+    
+                    &:last-child{
+                        .produkte-oferte__produkte--border{
+                            border-right: 3px dotted #707070;
+                        }
+                    }
+                }
+    
+            }
+        }
+
+
+
+
+
+        
+        //Title
+        &--title{
+            color: $produkteDesc;
+            font-weight: 300;
+            text-align: center;
+            font-size: 1rem;
+            max-width: 70%;
+            margin: auto;
+
+            @include atMedium{
+                height: 40px;
+            }
+
+
+            @include atLarge{
+                font-size: 17px;
+            }
+
+            @media (min-width: 1100px){
+                font-size: 16px;
+            }
+
+            span{
+                @include atMedium{
+                    display: block;
+                }
+            }
+        }
+
+        //Image
+        &--image{
+            display: block;
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+
+        //Discount image
+        &--discount-image{
+            margin: auto;
+            visibility: hidden;
+            
+            display: none;
+
+            @include atMedium{
+                display: block;
+                height: 62px;
+            }
+
+            img{
+                margin: auto;
+            }
+            &.active{
+                display: block;
+                visibility: visible;
+            }
+        }
+
+        &--priceinfo{
+            text-align: center;
+            margin: 12px auto;
+            height: 40px;
+            &-discount-price{    
+                color: #CECECE;
+                font-size: 20px;
+                text-decoration: line-through;
+                display: none;
+                &.active{
+                    display: inline;
+                }
+            }
+            &-price{
+                color: $infoText;
+                font-size: 20px;
+
+                &.active{
+                    font-size: 22px;
+                    color: $discountReceta;
+                    font-weight: bold;
+                    margin-left: 6px;
+                }
+            }
+        }
+
+        
+
+        //Button
+        &--btn{
+            outline: none;
+            border: none;
+            background: $button;
+            margin: auto;
+            text-align: center;
+            display: inline-block;
+            border-radius: 50px;
+            color: #fff;
+            padding: 10px 30px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            // width: 70%;
+        }
+    }
+}

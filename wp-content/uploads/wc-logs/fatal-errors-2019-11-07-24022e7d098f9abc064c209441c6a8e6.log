@@ -1,0 +1,10 @@
+2019-11-07T11:18:45+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-includes\Requests\Transport\cURL.php on line 163
+
+2019-11-07T11:28:40+00:00 CRITICAL Object of class WP_Query could not be converted to string in C:\xampp\htdocs\bio-ju\wp-content\themes\bio-ju\index.php on line 13
+
+2019-11-07T12:24:35+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-includes\Requests\Transport\cURL.php on line 163
+
+2019-11-07T14:26:39+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-admin\includes\class-wp-filesystem-direct.php on line 81
+
+2019-11-07T14:34:42+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-admin\includes\class-wp-filesystem-direct.php on line 81
+

@@ -1,0 +1,23 @@
+.wrapper{
+    overflow: hidden;
+    // background: red;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include atMedium{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    @include atLarge{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    @include atXLarge{
+        max-width: 1600px;
+    }
+}

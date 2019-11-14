@@ -1,0 +1,39 @@
+.secondary-footer{
+    // padding: 34px 0;
+    padding: 26px 0;
+    border-top: 1px solid $topnavRecetaBackground;
+    background: $footer;
+    @include clearfix;
+
+    &__privacy-terms{
+        float: left;
+
+        h5{
+            display: inline-block;
+            color: #fff;
+            
+            &:first-child{
+                margin-right: 20px;
+            }
+
+            @include atLarge{
+                font-size: 15px;
+            }
+
+        }
+    }
+
+    &__credits{
+        float: right;
+        
+        h5{
+            display: inline-block;
+            color: #fff;
+            
+            @include atLarge{
+                font-size: 15px;
+                padding-right: 30px;
+            }
+        }
+    }
+}

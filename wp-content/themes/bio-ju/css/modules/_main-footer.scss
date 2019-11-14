@@ -1,0 +1,126 @@
+.main-footer{
+    padding: 40px 0;    
+    background: $footer;
+    
+    @include atMedium{
+        padding: 75px 0;
+    }
+
+    //Links
+    &__links{
+
+        img{
+            padding-bottom: 20px;
+            @include atLarge{
+                padding-bottom: 30px;
+            }
+        }
+
+        //Text
+        &--text{
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 300;
+            padding-bottom: 38px;
+            span{
+                display: block;
+                text-transform: initial;
+            }
+
+            @include atLarge{
+                padding-bottom: 50px;
+            }
+        }
+
+        //Social
+        &--social{
+            @include clearfix;
+            
+            .flexbox &{
+                display: flex;
+            }
+
+            li{
+                float: left;
+                list-style: none;
+                padding-right: 10px;
+                @include atXLarge{
+                    padding-right: 16px;
+                }
+                &:last-child{
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+
+
+        //Contact
+    &__contact{
+        color: #fff;
+
+        >h5{
+            line-height: 1.6;
+            font-weight: 300;
+            padding-bottom: 2px;
+            // font-size: 11px;
+            
+            // @media(min-width: 1100px){
+                font-size: 12px;
+            // }
+
+            // @include atXLarge{
+            //     font-size: 14px;
+            // }
+
+            &:first-child{
+                font-weight: 900;
+                font-size: 13px;
+                margin-bottom: 6px;
+                @media(min-width: 1100px){
+                    font-size: 15px;
+                }
+
+                @include atXLarge{
+                    font-size: 17px;
+                }
+            }
+        }
+
+        input{
+            margin-top: 10px;
+            margin-bottom: 13px;
+            border: none;
+            outline: none;
+            display: block;
+            width: 100%;
+            color: #0F6F32;
+            padding: 8px 0 8px 6px;
+
+            @include atLarge{
+                margin-top: 30px;
+            }
+
+            @media(min-width: 1100px){
+                padding: 12px 0 12px 6px;
+            }
+        }
+
+        button{
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: $button;
+            padding: 12px 8px;
+            font-size: .66rem;
+            @media(min-width: 1100px){
+                padding: 14px 35px;
+                font-size: .8rem;
+            }
+        }
+    }
+
+    
+}

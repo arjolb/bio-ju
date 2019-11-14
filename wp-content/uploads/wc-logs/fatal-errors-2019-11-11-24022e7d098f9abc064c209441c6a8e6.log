@@ -1,0 +1,10 @@
+2019-11-11T14:53:45+00:00 CRITICAL syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\bio-ju\wp-content\themes\bio-ju\functions.php on line 332
+
+2019-11-11T16:15:09+00:00 CRITICAL Uncaught Error: Call to undefined function get_the_field() in C:\xampp\htdocs\bio-ju\wp-content\themes\bio-ju\page-rreth-nesh.php:18
+Stack trace:
+#0 C:\xampp\htdocs\bio-ju\wp-includes\template-loader.php(78): include()
+#1 C:\xampp\htdocs\bio-ju\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\bio-ju\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\bio-ju\wp-content\themes\bio-ju\page-rreth-nesh.php on line 18
+

@@ -1,0 +1,14 @@
+2019-11-13T09:26:07+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-includes\Requests\Transport\cURL.php on line 163
+
+2019-11-13T09:41:44+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-content\plugins\advanced-custom-fields\includes\fields\class-acf-field-date_time_picker.php on line 3
+
+2019-11-13T09:41:45+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-content\plugins\advanced-custom-fields\includes\fields\class-acf-field-group.php on line 3
+
+2019-11-13T09:41:55+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-admin\includes\post.php on line 20
+
+2019-11-13T11:46:19+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-content\plugins\advanced-custom-fields\includes\fields\class-acf-field-relationship.php on line 3
+
+2019-11-13T11:59:40+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-admin\includes\bookmark.php on line 16
+
+2019-11-13T13:11:15+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\bio-ju\wp-admin\includes\media.php on line 16
+
