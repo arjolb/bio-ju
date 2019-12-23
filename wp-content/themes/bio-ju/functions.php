@@ -9,9 +9,11 @@ function bio_ju_files(){
     wp_enqueue_script('mobile-menu', get_theme_file_uri('/js/MobileMenu.js'), NULL, '1.0', true);
     wp_enqueue_script('sticky-nav',get_theme_file_uri('/js/StickyNav.js'),NULL,'1.0',true);
     // wp_enqueue_script('shopping-cart',get_theme_file_uri('/js/ShoppingCart.js'),NULL,'1.0',true);
-    wp_enqueue_script('search',get_theme_file_uri('/js/Search.js'),array('jquery'),'1.0',true);
+    // wp_enqueue_script('search',get_theme_file_uri('/js/Search.js'),array('jquery'),'1.0',true);
     wp_enqueue_script('google-map', '//maps.googleapis.com/maps/api/js?key=AIzaSyAaj0VNqqjYLvor2JoKYBvTMmH_t_nM610', NULL, '1.0', true);
     wp_enqueue_script('google-map-code', get_theme_file_uri('/js/GoogleMap.js'), 'NULL', '1.0', true);
+    wp_enqueue_script('int-tel', get_theme_file_uri('/js/intlTelInput.js'), NULL, '1.0', true);
+    wp_enqueue_script( 'int-tel-code', get_theme_file_uri('/js/TelInput.js'), array('jquery'), '1.0' , true );
 
     wp_localize_script('search','data',array(
         'root_url', get_site_url()
@@ -88,9 +90,31 @@ function remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
 }
 
 
+//Google map
+add_filter('acf/fields/google_map/api','mapKey');
+// 
+function mapKey($api){
+  $api['key'] = 'AIzaSyAaj0VNqqjYLvor2JoKYBvTMmH_t_nM610';
+  return $api;
+}
 
 
 
+
+
+
+
+
+
+
+
+/*    WOOCOMMERCE   */
+
+
+/* FRONT-PAGE LOOP/CONTENT-PRODUCT */
+
+
+//Ndryshojme tekstin e butonit shot ne karte
 add_filter('woocommerce_product_single_add_to_cart_text', 'woo_custom_cart_button_text');
  
 function woo_custom_cart_button_text() {
@@ -103,100 +127,18 @@ function woo_custom_cart_button() {
 return __('Shto në shportë', 'woocommerce');
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Opening div for our content wrapper
- */
-add_action('woocommerce_before_main_content', 'iconic_open_div', 5);
- 
-function iconic_open_div() {
-    echo '<div class="iconic-div">';
-}
- 
-/**
- * Closing div for our content wrapper
- */
-add_action('woocommerce_after_main_content', 'iconic_close_div', 50);
- 
-function iconic_close_div() {
-    echo '</div>';
-}
-
-/**
- * Add coming soon text after a product title
- */
-// add_action('woocommerce_shop_loop_item_title', 'iconic_after_title', 15);
-
-// function iconic_after_title() {
-//     echo 'Coming Soon';
-// }
-
-
-
-
-
-/**
- * Remove breadcrumbs
- */
-remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
-
-
-//Remove sidebar
-remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
-
-
-
-
+//Ndryshojme rendin
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
 add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 15);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-remove_action('woocommerce_before_shop_loop_item','woocommerce_template_loop_product_link_open',10);
-
-
-
-
-//Remove sale_flash from front-end
-remove_action('woocommerce_before_shop_loop_item_title','woocommerce_show_product_loop_sale_flash',10);
-
-
-
-
-
+// remove_action('woocommerce_before_shop_loop_item','woocommerce_template_loop_product_link_open',10);
 
 
 //Shtojme titullin ne front-page/Loop
 
-/* CREATE the new function*/
 function woocommerce_template_loop_product_title() {
   echo '<h2 class="produkte-oferte__produkte--title">' . get_the_title() . '</h2>';
 }
@@ -207,6 +149,11 @@ remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_pr
 /* ADD new loop-title action      */
 add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
 
+
+
+
+//Heqim sale_flash from front-end
+remove_action('woocommerce_before_shop_loop_item_title','woocommerce_show_product_loop_sale_flash',10);
 
 
 
@@ -222,17 +169,29 @@ add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop
 
 
 //Shtojme cmimet: regular dhe sale
-function woocommerce_template_loop_price(){
-  ?>
-  
+function woocommerce_template_loop_price(){ 
+  global $product;
+
+  $percentDecrease = ((int)$product->get_regular_price() - (int)$product->get_sale_price())/(int)$product->get_regular_price() * 100;
+
+
+  if ($product->get_sale_price()) { ?>
+  <div class="produkte-oferte__produkte--discount-image active">
+    <span><?php if($percentDecrease) echo floor($percentDecrease); ?>%</span>
+    <img src="<?php echo get_theme_file_uri('/images/discount.png') ?>" alt="Discount" class="produkte-oferte__produkte--discount-image active">
+  </div>
+        <?php }else{
+          ?>
+        <img src="<?php echo get_theme_file_uri('/images/discount.png') ?>" alt="Discount" class="produkte-oferte__produkte--discount-image">
+        <?php }
+        
+        ?>
   <div class="produkte-oferte__produkte--priceinfo">
-
-    <?php
-    global $product;
-    if ($product->get_sale_price()) {
+      <?php
+        global $product;
+        if ($product->get_sale_price()) {
+      ?>
       
-
-    ?>
       <span class="produkte-oferte__produkte--priceinfo-discount-price active"><?php echo $product->get_sale_price(); ?> L</span>
       <span class="produkte-oferte__produkte--priceinfo-price active"><?php echo $product->get_regular_price(); ?> L</span>
     <?php }else{?>
@@ -241,25 +200,10 @@ function woocommerce_template_loop_price(){
           } ?>
   </div>       
         <?php 
-      } 
+} 
 
 remove_action('woocommerce_after_shop_loop_item_title','woocommerce_template_loop_price',10);
 add_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price');
-?>
-
-
-<?php
-remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
-
-
-
-
-//Heqim mesazhin View Cart
-// add_filter( 'wc_add_to_cart_message_html', '__return_null' );
-
-
-
-
 
 
 /**
@@ -283,7 +227,7 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 
         <div class="primary-nav__navigation2--shoppingcart-text">
             <h5>Shporta</h5>
-            <h6><?php echo WC()->cart->get_cart_total(); ?> Lek</h6>
+            <h6><?php echo WC()->cart->get_cart_total(); ?></h6>
         </div>
 
     </div>
@@ -297,14 +241,140 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 
 
 
+
+add_filter( 'woocommerce_loop_add_to_cart_link', 'quantity_inputs_for_loop_ajax_add_to_cart', 10, 2 );
+function quantity_inputs_for_loop_ajax_add_to_cart( $html, $product ) {
+    if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
+        // Get the necessary classes
+        $class = implode( ' ', array_filter( array(
+            'button',
+            'product_type_' . $product->get_type(),
+            $product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
+            $product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
+        ) ) );
+
+        // Adding embeding <form> tag and the quantity field
+        $html = sprintf( '%s%s<a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s cart-front-page-btn">%s</a>%s',
+            '<form class="cart cart-front-page">',
+            woocommerce_quantity_input( array(), $product, false ),
+            esc_url( $product->add_to_cart_url() ),
+            esc_attr( isset( $quantity ) ? $quantity : 1 ),
+            esc_attr( $product->get_id() ),
+            esc_attr( $product->get_sku() ),
+            esc_attr( isset( $class ) ? $class : 'button' ),
+            esc_html( $product->add_to_cart_text() ),
+            '</form>'
+        );
+    }
+    return $html;
+}
+
+add_action( 'wp_footer' , 'archives_quantity_fields_script' );
+function archives_quantity_fields_script(){ ?>
+    <script type='text/javascript'>
+        
+        jQuery(function($){
+            // Update quantity
+            $(".add_to_cart_button.product_type_simple").on('click input', function() {
+                $(this).data('quantity', $(this).parent().find('input.qty').val() ); 
+            });        
+
+            // On "adding_to_cart" delegated event, removes others "view cart" buttons 
+            $(document.body).on("adding_to_cart", function() {
+                $(".added_to_cart").remove();
+            });
+        });
+    </script>
+    <?php //endif;
+}
+
+
+
+
+
+
+
+/*END LOOP FRONT PAGE/CONTENT-PRODUCT */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*   SINGLE PRODUCT PAGE   */
+
+function woocommerce_template_single_price(){
+  global $product;
+
+  if ($product->get_sale_price()) {
+    echo '<h2 class="woocommerce-single-product--summary__price">' 
+    . '<span>' . $product->get_regular_price() . '</span>' . '<span>' . $product->get_sale_price()
+    . '</span></h2>';
+  } else {
+    echo '<h2 class="woocommerce-single-product--summary__price">' . $product->get_regular_price() . '</h2>';
+  }
+  
+}
+
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 15);
+
+
+
+
+
+
+// function short_description(){
+//   global $product;
+//   echo '<p class="woocommerce-single-product--summary__short-description">' . $product->get_short_description() .'</p>';
+// }
+
+// add_action('woocommerce_single_product_summary', 'short_description', 60);
+
+
+/*  HEQIM META.PHP/ACTION:woocommerce_template_single_meta, PERGJEGJES PER KATEGORITE DHE SKU  */
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+
+
+function my_wc_hide_in_stock_message( $html, $product ) {
+	if ( $product->is_in_stock() ) {
+		return '<p class="woocommerce-single-product--summary__disponueshem">&#10004; I disponueshem</p>';
+	}
+
+	return $html;
+}
+
+add_filter( 'woocommerce_get_stock_html', 'my_wc_hide_in_stock_message', 10, 2 );
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Heqim form kupon ne checkout
 remove_action('woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10);
-
-
-
-
-
-
 
 
 
@@ -358,27 +428,36 @@ function custom_override_default_address_fields( $address_fields ) {
 
 
 
-//Google map
-add_filter('acf/fields/google_map/api','mapKey');
-// 
-function mapKey($api){
-  $api['key'] = 'AIzaSyAaj0VNqqjYLvor2JoKYBvTMmH_t_nM610';
-  return $api;
+
+//heqim sorting dhe totalin e produkteve ne archive page
+// remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
+// remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10);
+
+
+
+
+function woocommerce_output_content_wrapper(){
+  echo '<div class="wrapper">';
+}
+
+function woocommerce_output_content_wrapper_end(){
+  echo '</div>';
 }
 
 
 
 
+// Change "Default Sorting" to "Our sorting" on shop page and in WC Product Settings
+function defaultSorting( $catalog_orderby ) {
+  $catalog_orderby = str_replace("Default sorting", "Renditja e parazgjedhur", $catalog_orderby);
+  $catalog_orderby = str_replace("Sort by popularity", "Renditja nga popullariteti", $catalog_orderby);
+  $catalog_orderby = str_replace("Sort by latest", "Renditja me më të fundit", $catalog_orderby);
+  $catalog_orderby = str_replace("Sort by price: low to high", "Renditja nga cmimi me i ulët në më të lartë", $catalog_orderby);
+  $catalog_orderby = str_replace("Sort by price: high to low", "Renditja nga cmimi me i lartë në më të ulët", $catalog_orderby);
 
 
-
-
-
-
-// function add_async_attribute($tag, $handle) {
-  // if ( 'my-js-handle' !== $handle )
-      // return $tag;
-  // return str_replace( ' src', ' async="async" src', $tag );
-// }
-// 
-// add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
+  return $catalog_orderby;
+}
+add_filter( 'woocommerce_catalog_orderby', 'defaultSorting' );
+add_filter( 'woocommerce_default_catalog_orderby_options', 'defaultSorting' );

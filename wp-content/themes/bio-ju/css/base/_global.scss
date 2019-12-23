@@ -17,4 +17,11 @@ img{
 
 body{
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+html {
+    overflow-y: scroll;
+}
+.body-no-scroll{
+    overflow-y: hidden;
 }

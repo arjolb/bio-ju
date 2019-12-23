@@ -1,0 +1,140 @@
+.kontakt{
+    &-header{
+        font-size: 40px;
+        font-weight: 100;
+        color: #2c2c2c;
+        padding: 50px 0;
+        letter-spacing: 2px;
+    }
+
+    &-container{
+        @include atMedium{
+            display: flex;
+        }
+
+        &--info{
+            flex: 1;
+
+            h3{
+                font-weight: 100;
+                line-height: 1.6;
+                margin-bottom: 10px;
+            }
+
+            &__social-icons{
+                display: flex;
+                margin-top: 40px;
+
+                li{
+                    list-style-type: none;
+                    flex-basis: 40px;
+                    img{
+                        height: 20px;
+                        // &:hover{
+                        //     // background: red;
+                        // }
+                    }
+                }
+            }
+        }
+
+        &--form{
+            flex: 2;
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 50px;
+            margin-top: 60px;
+
+            @include atMedium{
+                margin-top: 0px;
+            }
+
+            &__group-inputs{
+                flex-basis: 100%;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+
+                &-1{
+                    flex-basis: 48%;
+                }
+
+                &-2{
+                    flex-basis: 48%;
+                }
+
+                label{
+                    color: $footer;
+                    font-size: 1rem;
+                    font-weight: 900;
+
+                    span{
+                        color: #a94442;
+                    }
+                }
+
+                input{
+                    margin-top: 10px;
+                    padding: 10px 2px;
+                    display: block;
+                    width: 100%;
+                    background: #f8f6ed;
+                    outline: none;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                }
+
+                .iti{
+                    display: block;
+                    margin-top: 10px;
+                }
+            }
+
+            &__msg{
+                flex-basis: 100%;
+
+                label{
+                    color: $footer;
+                    font-size: 1rem;
+                    font-weight: 900;
+
+                    span{
+                        color: #a94442;
+                    }
+                }
+
+                textarea{
+                    width: 100%;
+                    display: block;
+                    margin-top: 10px;
+                    background: #f8f6ed;
+                    outline: none;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                }
+            }
+
+            &__send-btn{
+                margin-top: 20px;
+                background: $footer;
+                outline: none;
+                border: none;
+                color: #fff;
+                text-transform: uppercase;
+                padding: .8rem 5rem;
+                font-size: 1.1rem;
+                letter-spacing: 2px;
+                font-weight: 900;
+                cursor: pointer;
+                transition: all .2s;
+                margin-left: auto;
+                margin-right: auto;
+
+                &:hover{
+                    background: #ec6851;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+}

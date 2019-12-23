@@ -72,33 +72,6 @@
 
 
 
-<!--Galeri-->                                
-<div class="gallery">
-    <div class="row row-m">
-    <?php
-    $galeri = new WP_Query(array(
-        'posts_per_page' => -1,
-        'post_type' => 'galeri'
-    ));
-
-    while ($galeri->have_posts()) {
-        $galeri->the_post();
-        ?>
-
-        <div class="col col-m-small-screen col-md-4">
-            <?php 
-                the_post_thumbnail();
-            ?>
-        </div>
-
-    <?php } wp_reset_postdata();?>
-        
-    </div>
-</div><!-- /gallery -->
-
-
-
-
 
 <!-- PRODUKTE NË OFERTË  -->
 <div class="produkte-oferte">
@@ -213,54 +186,37 @@
                     <p class="recetat-front-page--description--content">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
                     </p>
-                    <button class="recetat-front-page--description--btn">
+                    <a class="recetat-front-page--description--btn" href="<?php echo get_post_type_archive_link('receta'); ?>">
                         Zbulo më shumë
-                    </button>
+                    </a>
                 </section>
             </div>
 
             <div class="col col-md-8">
                 <div class="row">
+                    <?php
+                        $receta = new WP_Query(array(
+                            'posts_per_page' => 4,
+                            'post_type' => 'receta'
+                        ));
+
+                        if ($receta->have_posts()) {
+                            while ($receta->have_posts()) {
+                                $receta->the_post();?>
                     <div class="col col-md-3">
+                        <a href="<?php echo the_permalink(); ?>">
                         <section class="recetat__photos">
                             <div class="recetat__photos--img">
-                                <img src="<?php echo get_theme_file_uri('./images/gallery/gallery-1.png') ?>" alt="Receta">
+                                <?php the_post_thumbnail(); ?>
                             </div>
-                            <h1 class="recetat__photos--title">Lorem Ipsum</h1>
-                            <span class="recetat__photos--description">Lorem Ipsum is simply dummy text of the printing.</span>
+                            <h1 class="recetat__photos--title"><?php the_title(); ?></h1>
+                            <span class="recetat__photos--description"><?php echo wp_trim_words(get_the_content(), 22); ?></span>
                         </section>
+                        </a>
                     </div>
-
-                    <div class="col col-md-3">
-                        <section class="recetat__photos">
-                            <div class="recetat__photos--img">
-                                <img src="<?php echo get_theme_file_uri('./images/gallery/gallery-1.png') ?>" alt="Receta">
-                            </div>
-                            <h1 class="recetat__photos--title">Lorem Ipsum</h1>
-                            <span class="recetat__photos--description">Lorem Ipsum is simply dummy text of the printing.</span>
-                        </section>
-                    </div>
-
-                    <div class="col col-md-3">
-                        <section class="recetat__photos">
-                            <div class="recetat__photos--img">
-                                <img src="<?php echo get_theme_file_uri('./images/gallery/gallery-1.png') ?>" alt="Receta">
-                            </div>
-                            <h1 class="recetat__photos--title">Lorem Ipsum</h1>
-                            <span class="recetat__photos--description">Lorem Ipsum is simply dummy text of the printing.</span>
-                        </section>
-                    </div>
-
-                    <div class="col col-md-3">
-                        <section class="recetat__photos">
-                            <div class="recetat__photos--img">
-                                <img src="<?php echo get_theme_file_uri('./images/gallery/gallery-1.png') ?>" alt="Receta">
-                            </div>
-                            <h1 class="recetat__photos--title">Lorem Ipsum</h1>
-                            <span class="recetat__photos--description">Lorem Ipsum is simply dummy text of the printing.</span>
-                        </section>
-                    </div>
-
+                    <?php }
+                        }
+                    ?>
                 </div>
             </div>
         </div>

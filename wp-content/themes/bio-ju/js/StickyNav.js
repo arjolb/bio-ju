@@ -8,7 +8,7 @@ function stickyNav(e) {
     let navOffset = c.offsetTop;
     let scrollPos = window.scrollY;
     
-    if (scrollPos>navOffset) {
+    if (scrollPos>navOffset+200) {
         primaryNav.classList.add('fixed');
         
     } else {

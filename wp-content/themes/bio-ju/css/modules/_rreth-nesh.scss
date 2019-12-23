@@ -27,8 +27,10 @@
     }
 
     &--promo{
-        display: flex;
-        justify-content: space-between;
+        @include atMedium{
+            display: flex;
+            justify-content: space-between;
+        }
 
         &-video{
             flex-basis: 42%;
@@ -40,7 +42,11 @@
 
         &-text-photo{
             flex-basis: 55%;
-            display: flex;
+            
+            @include atMedium{
+                display: flex;
+            }
+
             >div{
                 flex: 1;
 

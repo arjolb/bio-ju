@@ -7,7 +7,20 @@
     <?php wp_head(); ?>
 </head>
 <body>
-    <header class="site-header site-header__mobile">
+    <header class="site-header">
+        <img src="<?php echo get_theme_file_uri('/images/logo.png') ?>" alt="Logo" class="site-header__logo">
+        <div class="primary-nav__navigation2--shoppingcart primary-nav__navigation2--shoppingcart__mobile">
+            <div class="primary-nav__navigation2--shoppingcart--count">
+                <img src="<?php echo get_theme_file_uri('./icons/header/shopping-cart.svg') ?>" alt="Shopping-Cart">
+                <span><h6><?php echo  WC()->cart->get_cart_contents_count(); ?></h6></span>
+            </div>
+
+            <div class="primary-nav__navigation2--shoppingcart-text">
+                <h5>Shporta</h5>
+                <h6><?php echo WC()->cart->get_cart_total(); ?></h6>
+            </div>
+
+        </div>
         <div class="site-header__menu-icon">
             <div class="site-header__menu-icon--middle"></div>
         </div>
@@ -40,8 +53,7 @@
                             <span>Dil</span>
                             </a>
                             <?php } else { ?>
-                              <a href="<?php echo wp_login_url(); ?>">Hyr</a>
-                              <a href="<?php echo wp_registration_url(); ?>">Regjistrohu</a>
+                              <a href="<?php echo site_url('/my-account'); ?>">Hyr ose Regjistrohu</a>
                              <?php } ?>
                         </span>
                     </li>
@@ -82,37 +94,25 @@
                                                );
                                                $product_categories = get_terms( 'product_cat', $args );
                                                $count = count($product_categories);
-                                               
-                                               
-                                            ?>
-                                            <div class="col col-md-6">
-                                                <?php
+                                               $args = array(
+                                                'posts_per_page' => -1,
+                                                'tax_query' => array(
+                                                    'relation' => 'AND',
+                                                    array(
+                                                        'taxonomy' => 'product_cat',
+                                                        'field' => 'slug',
+                                                        // 'terms' => 'white-wines'
+                                                        'terms' => $product_category->slug
+                                                        )
+                                                    ),
+                                                );
 
-                                            if ( $count > 0 ){
+                                            if ( $count > 0 ){ 
                                                 foreach ( $product_categories as $product_category ) {
-                                                    echo '<h1><a href="' . get_term_link( $product_category ) . '">' . $product_category->name . '</a></h4>';
-                                                    $args = array(
-                                                        'posts_per_page' => -1,
-                                                        'tax_query' => array(
-                                                            'relation' => 'AND',
-                                                            array(
-                                                                'taxonomy' => 'product_cat',
-                                                                'field' => 'slug',
-                                                                // 'terms' => 'white-wines'
-                                                                'terms' => $product_category->slug
-                                                            )
-
-                                            ),
-
-                                                    );
-
-                                                }
-                                            }
-
-                                               ?>
-                                                <!-- <h1><a href=""></a></h1> -->
-                                            </div>
-                                            <?php ?>
+                                                    echo '<h1><a href="' . get_term_link( $product_category ) . '">' . $product_category->name . '</a></h1>';
+                                               
+                                                }  } 
+                                            ?>
                                         </div>
                                    </div>
                                    
@@ -129,17 +129,17 @@
                                     <div class="row">
                                     <?php
                                     $galeri = new WP_Query(array(
-                                        'posts_per_page' => -1,
-                                        'post_type' => 'galeri'
+                                        'posts_per_page' => 3,
+                                        'post_type' => 'receta'
                                     ));
 
                                     while ($galeri->have_posts()) {
                                         $galeri->the_post();
                                         ?>
 
-                                        <div class="col col-m-small-screen col-md-4">
+                                        <div class="col col-m-small-screen col-sm-4">
                                             <?php 
-                                                the_post_thumbnail();
+                                                echo '<a href='.get_the_permalink().'>' .get_the_post_thumbnail() .'</a>';
                                             ?>
                                         </div>
 
@@ -156,22 +156,25 @@
                             <li><a href="<?php echo site_url('/home') ?>"class=" <?php if(is_page('home')) echo "active"; ?> ">Home</a></li>
                             <li><a href="<?php echo site_url('/rreth-nesh') ?>" class="<?php if(is_page('rreth-nesh')) echo "active"; ?>">Rreth Nesh</a></li>
                             <li><a href="<?php echo get_post_type_archive_link('receta'); ?>" class="<?php if(get_post_type() == 'receta') echo 'active'; ?>">Receta</a></li>
-                            <li><a href="#">Karriera</a></li>
-                            <li><a href="<?php echo get_post_type_archive_link('galeri'); ?>" class="<?php if(get_post_type() == 'galeri') echo 'active'; ?>">Galeri</a></li>
-                            <li><a href="#">Kontakt</a></li>
+                            <!-- <li><a href="#">Karriera</a></li> -->
+                            <li><a href="<?php echo site_url('/shop') ?>" class="<?php if(is_shop() || is_product_category() || is_product()) echo "active"; ?>">Produkte</a></li>
+                            <li><a href="<?php echo site_url('/kontakt') ?>" class="<?php if(is_page('kontakt')) echo "active"; ?>">Kontakt</a></li>
                         </ul>
                     </li>
                 </ul><!-- /navigation links -->
 
                 <ul class="primary-nav__navigation2">
                     <li>
-                        <div class="primary-nav__navigation2--search">
+                        <!-- <div class="primary-nav__navigation2--search">
                             <input type="text" placeholder="Kerkoni" id="search-field">
                             <span class="primary-nav__navigation2--search-img">
-                                <img src="<?php echo get_theme_file_uri('./icons/header/a.svg') ?>" alt="Search">
+                                <img src="<?php
+                                //  echo get_theme_file_uri('./icons/header/a.svg') 
+                                 ?>" alt="Search">
                             </span>
                             <div id="search-results" class="search-results"></div>
-                        </div>
+                        </div> -->
+                        <?php get_product_search_form(); ?>
                     </li><!-- /Search -->
                     <li class="primary-nav__navigation2--shoppingcart--hover">
                         <a class="cart-customlocation" href="<?php echo wc_get_cart_url(); ?>">

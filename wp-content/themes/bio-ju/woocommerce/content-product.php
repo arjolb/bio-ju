@@ -60,17 +60,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
 	 *

@@ -33,19 +33,6 @@ function post_types(){
         // 'map_meta_cap' => true
     // ));
 
-    register_post_type('galeri',array(
-        'supports' => array('thumbnail'),
-        'public' => true,
-        'labels' => array(
-            'name' => 'Galeria',
-            'add_new_item' => 'Shto foto',
-            'edit_item' => 'Ndrysho foton',
-            'all_items' => 'Të gjitha fotot',
-            'singular_name' => 'Galeri'
-        ),
-        'menu_icon' => 'dashicons-images-alt2',
-        'has_archive' => true
-    ));
 
     register_post_type('receta',array(
         'supports' => array('title','editor','thumbnail','excerpt'),

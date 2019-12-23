@@ -15,9 +15,10 @@
 
     while (have_posts()) {
         the_post();
-        the_content();
+        the_title();
+        the_content();       
     }
-
+    echo '<h1>test</h1>';
 ?>
 </div>
 

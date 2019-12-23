@@ -23,18 +23,34 @@ if ( $related_products ) : ?>
 
 	<section class="related products">
 
-		<h2><?php esc_html_e( 'Related products', 'woocommerce' ); ?></h2>
+	<h1><?php esc_html_e( 'Produkte të ngjashëm', 'woocommerce' ); ?></h1>
+
+		<?php
+			echo '<div class="produkte-oferte produkte-oferte-archive">
+			<div class="produkte-oferte__produkte">
+			<div class="produkte-oferte__produkte--container produkte-oferte__produkte--container-archive">
+			';
+		?>
+
+		
 
 		<?php woocommerce_product_loop_start(); ?>
 
 			<?php foreach ( $related_products as $related_product ) : ?>
 
 				<?php
+
+					echo '<div class="produkte-oferte__produkte-col">';
+
 				 	$post_object = get_post( $related_product->get_id() );
 
 					setup_postdata( $GLOBALS['post'] =& $post_object );
 
-					wc_get_template_part( 'content', 'product' ); ?>
+					wc_get_template_part( 'content', 'product' );
+					
+					echo '</div>';
+					
+					?>
 
 			<?php endforeach; ?>
 

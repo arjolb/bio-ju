@@ -1,5 +1,4 @@
 .produkte-oferte{
-
     padding-top: 4rem;
 
     @include atLarge{
@@ -9,7 +8,10 @@
         padding-top: 10rem;//160px
     }
 
-
+    &-archive{
+        padding-top: 0;
+    }
+    
 
     //Produktet e zgjedhura pt
     &__zgjedhur{
@@ -44,7 +46,7 @@
         .flexbox &--container{
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            // justify-content: space-between;
             
             @include atLarge{
                 border-right: 3px dotted #707070;
@@ -65,6 +67,19 @@
                     border-left: 3px dotted #707070;
                 }
 
+            }
+
+            &-archive{
+                border: none;
+                
+                >div{
+                    border-left: none;                    
+                    margin-bottom: 110px;
+
+                    @include atMedium{
+                        border-right: 3px dotted #707070;
+                    }
+                }
             }
         }
 
@@ -189,8 +204,8 @@
         &--discount-image{
             margin: auto;
             visibility: hidden;
-            
             display: none;
+            position: relative;
 
             @include atMedium{
                 display: block;
@@ -203,6 +218,17 @@
             &.active{
                 display: block;
                 visibility: visible;
+            }
+
+            span{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                z-index: 10;
+                color: #fff;
+                font-size: 25px;
+                font-weight: bold;
             }
         }
 
@@ -244,7 +270,7 @@
             display: inline-block;
             border-radius: 50px;
             color: #fff;
-            padding: 10px 30px;
+            padding: 10px 28px;
             font-size: 1rem;
             font-weight: 800;
             cursor: pointer;
@@ -252,7 +278,14 @@
             position: relative;
             left: 50%;
             transform: translateX(-50%);
-            // width: 70%;
+            transition: all .2s;
+            border: 1px solid $button;
+            // height: 42px;
+            
+            &:hover{
+                background: #fff;
+                color: $button;
+            }
         }
     }
 }

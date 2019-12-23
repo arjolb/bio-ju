@@ -85,6 +85,10 @@
         background: $topnavRecetaBackground;
         padding: 60px 0;
 
+        a{
+            text-decoration: none;
+        }
+
         &--description--title{
             color: $discountReceta;
             text-transform: uppercase;
@@ -111,6 +115,32 @@
             font-size: 0.7rem;
             padding: 10px 26px;
             cursor: pointer;
+        }
+    }
+
+    &__photos{
+        margin-top: 30px;
+
+        @include atMedium{
+            margin-top: 0;
+        }
+
+        &--img{
+            padding-bottom: 15px;
+            img{
+                height: 100px;
+            }
+        }
+
+        &--title{
+            font-size: 18px;
+            color: #646464;
+        }
+
+        &--description{
+            font-size: 12px;
+            color:#646464;
+            font-weight: 100;
         }
     }
 }

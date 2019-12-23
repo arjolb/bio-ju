@@ -18,5 +18,6 @@
     "gulp-modernizr": "^3.3.0",
     "gulp-sass": "^4.0.2",
     "webpack": "^4.41.2"
-  }
+  },
+  "dependencies": {}
 }

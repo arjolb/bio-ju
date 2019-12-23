@@ -1,0 +1,59 @@
+.login-registration{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+
+    h2{
+        font-size: 30px;
+        font-weight: normal;
+        letter-spacing: 1px;
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+
+    input{
+        width: 100%;
+        padding: 10px 0;
+        background: #f6f6f6;
+        outline: none;
+        border: 1px solid #dee2e6;
+    }
+
+    label{
+        margin-bottom: 10px;
+        font-weight: 100;
+        input{
+            width: auto;
+        }
+    }
+
+    a{
+        text-decoration: none;
+        color: $footer;
+        font-weight: 900;
+        margin-bottom: 10px;
+    }
+
+    button{
+        margin-top: 20px;
+        display: block;
+        background: $button;
+        outline: none;
+        border: 1px solid $button;
+        color: #fff;
+        padding: 10px 28px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    &--login{
+        order: 2;
+        flex-basis: 49%;
+    }
+
+    &--register{
+        order: 1;
+        flex-basis: 49%;
+    }
+}
